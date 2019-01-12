@@ -1,0 +1,12 @@
+.dark-theme {
+    input,input:focus {
+        background: $pageBgDark;
+        color: $colorDark;
+        border: none !important;
+        // box-shadow: 0px 1px 0px 0px $colorDark;
+    }
+    input:focus {
+        box-shadow: none;
+        color: $activeTxt;
+    }
+}

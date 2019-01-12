@@ -1,0 +1,219 @@
+// .side-nav {
+//     position: fixed;
+//     background: $bgDark;
+//     color: $colorDark;
+//     width: 230px;
+//     height: 100%;
+//     z-index: 998;
+//     // top: 60px;
+//     .brand-side {
+//         padding: 10.5px 0 16.5px 14px;
+//         position: relative;
+//         font-size: 24px;
+//         cursor: pointer;
+//         i {
+//             font-size: 24px !important;
+//         }
+//         span {
+//             position: absolute;
+//             font-size: $fs15;
+//             margin-left: 14px;
+//             font-family: $robotSans;
+//             letter-spacing: 10px;
+//             font-weight: bold;
+//             color: #fff;
+//             top: 31%;
+//         }
+//     }
+//     .wrap-side {
+//         display: flex;
+//         flex-direction: column;
+//         line-height: 1;
+//         .side-item {
+//             position: relative;
+//             padding: 16.5px 0 16.5px 14px;
+//             margin: 1px 0;
+//             justify-content: center;
+//             cursor: pointer;
+//             i {
+//                 font-size: $ics16;
+//             }
+//             span {
+//                 font-size: $fs15;
+//                 margin-left: 14px;
+//                 font-family: $sourceSans;
+//             }
+//         }
+//         .side-item:hover {
+//             ::before {
+//                 content: "";
+//                 position: absolute;
+//                 left: 0;
+//                 top: 1px;
+//                 bottom: -2px;
+//                 border-left: 5px $activeIcon solid;
+//                 z-index: 99999;
+//             }
+//             ::after {
+//                 content: "";
+//                 position: absolute;
+//                 left: 0;
+//                 right: 0;
+//                 top: 0;
+//                 bottom: 0;
+//                 background: rgba(0, 0, 0, .16);
+//             }
+//             background: $activeSide;
+//             svg {
+//                 color: $activeIcon !important;
+//             }
+//             span {
+//                 color: $activeTxt;
+//             }
+//         }
+//         .side-active {
+//             ::before {
+//                 content: "";
+//                 position: absolute;
+//                 left: 0;
+//                 top: 1px;
+//                 bottom: -2px;
+//                 border-left: 5px $activeIcon solid;
+//                 z-index: 99999;
+//             }
+//             ::after {
+//                 content: "";
+//                 position: absolute;
+//                 left: 0;
+//                 right: 0;
+//                 top: 0;
+//                 bottom: 0;
+//                 background: rgba(0, 0, 0, .16);
+//             }
+//             background: $activeSide;
+//             svg {
+//                 color: #A3A0FB;
+//                 // color: $activeIcon !important;
+//             }
+
+//             span {
+//                 color: $activeTxt;
+//             }
+//         }
+//     }
+// }
+
+.side-nav {
+    position: fixed;
+    background: $bgDark;
+    color: $colorDark;
+    width: 49.19px;
+    height: 100%;
+    z-index: 99999;
+    top: 46px;
+
+    .brand-side {
+        padding: 10.5px 0 16.5px 14px;
+        position: relative;
+        font-size: 24px;
+        cursor: pointer;
+
+        svg {
+            font-size: 24px !important;
+        }
+
+        span {
+            position: absolute;
+            font-size: $fs15;
+            font-family: $robotSans;
+            letter-spacing: 10px;
+            font-weight: bold;
+            color: #fff;
+            top: 31%;
+            width: 0px;
+        }
+    }
+
+    .wrap-side {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        margin-top: 15px;
+        .side-item {
+            position: relative;
+            padding: 16.5px 0 16.5px 14px;
+            margin: 1px 0;
+            justify-content: center;
+            cursor: pointer;
+            svg {
+                font-size: $ics16;
+                color: $colorDark;
+            }
+
+            span {
+                position: absolute;
+                font-size: $fs15;
+                // margin-left: 14px;
+                display: none;
+                font-family: $sourceSans;
+                // left: -1000%;
+            }
+        }
+
+        .side-item:hover {
+            border-left: 5px $activeIcon solid;
+            background: $activeSide;
+            z-index: 99999;
+            ::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, .16);
+                z-index: 99999;
+            }
+
+            svg {
+                color: $activeIcon !important;
+            }
+
+            span {
+                color: $activeTxt;
+                display: block;
+                width: 150px;
+                top: 0px;
+                padding: 16.5px 0 21.7px 14px;
+                left: 44.7px;
+                background: rgba(0, 0, 0, .16);
+                transition: all .3s ease-in-out;
+                z-index: 99999;
+            }
+        }
+
+        .side-active {
+            border-left: 5px $activeIcon solid;
+            background: $activeSide;
+            ::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, .16);
+            }
+
+            svg {
+                color: #A3A0FB;
+                // color: $activeIcon !important;
+            }
+
+            span {
+                color: $activeTxt;
+                background: $activeSide;
+            }
+        }
+    }
+}

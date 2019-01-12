@@ -1,0 +1,57 @@
+.float-button {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    bottom: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    z-index: 9999;
+
+    .card {
+        background: rgba(0, 0, 0, 0.496);
+    }
+
+    .btn {
+        margin: 10px;
+    }
+}
+
+.m-modal {
+    transition: .3s all ease-in-out;
+    background: rgba(0, 0, 0, 0.496);
+    z-index: 99999;
+    color: #fff;
+    .card {
+        background: rgba(0, 0, 0, 0.496);
+    }
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.s-modal {
+    transform: translate(-50%, -50%);
+}
+.h-modal {
+    transform: translate(-50%,-1000%);
+}
+
+.loading-progress {
+    position: fixed;
+    transition: all .3s ease-in-out;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    z-index: 99999;
+    
+    .card {
+        width: 300px !important;
+    }
+}
+
+.s-loading {
+    transform: translate(-50%, -50%);
+}
+
+.h-loading {
+    transform: translate(-550%,-550%);
+}

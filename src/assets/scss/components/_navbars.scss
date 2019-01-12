@@ -1,0 +1,88 @@
+.m-navbar {
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    width: 100% !important;
+    background: $bgDark;
+    color: $colorDark;
+    z-index: 997;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    .title-bar {
+        align-self: center;
+        color: #fff;
+        font-size: 18px;
+        font-family: $robotSans;
+        letter-spacing: 10px;
+        font-weight: bold;
+    }
+    .wrap-nav {
+        position: relative;
+        align-self: flex-end;
+        .m-nav {
+            cursor: pointer;
+            .img-circle {
+                width: 40px;
+                border-radius: 100%;
+            }
+            span {
+                font-size: 12px;
+                font-family: $sourceSans;
+                padding-right: 20px;
+            }
+        }
+        .n-nav {
+            a {
+                font-size: 12px;
+                font-family: $sourceSans;
+                // padding-right: 20px;
+                margin: 0 10px;
+                padding: 5px 20px;
+            }
+        }
+    }
+}
+
+    // .m-nav {
+    //     cursor: pointer;
+    //     width: auto;
+    //     // padding: 0 15px;
+    //     // align-self: flex-end;
+    //     // justify-content: end;
+
+    //     .img-circle {
+    //         width: 40px;
+    //         border-radius: 100%;
+    //         // float: right;
+    //         justify-content: end;
+    //         align-self: flex-end;
+    //     }
+
+    //     span {
+    //         font-size: 12px;
+    //         font-family: $sourceSans;
+    //         position: absolute;
+    //         right: 80px;
+    //         top: 24px;
+    //     }
+    // }
+
+.droptodown {
+    position: absolute;
+    background: #3030309f;
+    width: 130px;
+    right: 0;
+    top: 60px;
+    z-index: 9999;
+    font-size: .8em;
+    .dropdown-item {
+        padding: 1em 2em;
+        color: #fff;
+    }
+    .dropdown-item:hover {
+        background: rgb(220, 219, 219);
+        color: #000;
+    }
+}

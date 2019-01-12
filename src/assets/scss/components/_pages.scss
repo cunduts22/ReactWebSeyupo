@@ -1,0 +1,59 @@
+.custome-pages {
+    margin-top: 60px;
+    margin-left: 49.19px;
+    padding: 10px;
+    color: $colorDark;
+    width: auto;
+    height: 100%;
+    position: relative;
+}
+
+.wrap-nav {
+    .m-navbar {
+        visibility: visible;
+    }
+    .side-nav {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.mapboxgl-control-container {
+    display: none;
+}
+
+.mapboxgl-canary {
+    display: none
+}
+
+.full {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+
+}
+
+.login {
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    color: $colorDark;
+}
+
+.center-position {
+    position: fixed;
+    max-height: calc(100% - 100px);
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}

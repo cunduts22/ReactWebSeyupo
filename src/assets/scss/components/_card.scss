@@ -1,0 +1,14 @@
+.card {
+    border: none !important;
+}
+.darken {
+    background: $bgDark !important;
+    box-shadow: 3px 4px 0px 0px rgba(85, 85, 85, 0.265);
+    color: #fff;
+}
+
+.c-card {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
