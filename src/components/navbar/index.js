@@ -30,7 +30,7 @@ export default class NavBar extends Component {
           <div className="title-bar">SEYUPO</div>
           <div className="wrap-nav">
               <div className="m-nav" onClick={this.toggleDrop.bind(this)}>
-                  <span>John Doe</span>
+                  <span>{this.props.user ? this.props.user.username : "John Doe"}</span>
                   <img src="https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png" alt="" className="img-circle"/>
               </div>
           </div>

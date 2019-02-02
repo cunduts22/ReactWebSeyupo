@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 export const initializeAxios = () => {
     const token = localStorage.getItem('token')
-    Axios.defaults.baseURL = 'http://localhost:4001/'
+    Axios.defaults.baseURL = "https://seyupo-api.openode.io/";
     if(token) {
         Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     } else {

@@ -9,3 +9,6 @@ export const AUTH_FAILED = "AUTH_FAILED"
 export const AUTH_SUCCESS = "AUTH_SUCCESS"
 export const CHECK_AUTH = "CHECK_AUTH"
 export const USER_SESSION = "USER_SESSION"
+
+export const GET_DEVICES = "GET_DEVICES"
+export const RESULT_GET_DEVICES = "RESULT_GET_DEVICES"

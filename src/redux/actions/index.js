@@ -1,4 +1,4 @@
-import { SIGN_IN, AUTH_SUCCESS, AUTH_FAILED, CHECK_AUTH } from "../types";
+import { SIGN_IN, AUTH_SUCCESS, AUTH_FAILED, CHECK_AUTH, GET_DEVICES, RESULT_GET_DEVICES } from "../types";
 
 export const sign_in = (payload) => {
     return {
@@ -24,5 +24,18 @@ export const auth_failed = (payload) => {
 export const check_auth = () => {
     return {
         type: CHECK_AUTH
+    }
+}
+
+export const getAllDevices = () => {
+    return {
+        type: GET_DEVICES
+    }
+}
+
+export const resultDevices = (payload) => {
+    return {
+        type: RESULT_GET_DEVICES,
+        payload
     }
 }

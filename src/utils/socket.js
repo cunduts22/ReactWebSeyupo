@@ -1,6 +1,6 @@
 import SocketIOClient from 'socket.io-client'
-const url = "https://nameless-tor-98135.herokuapp.com";
+const url = "https://seyupo-api.openode.io/";
 export const socket = () => {
-    var io = SocketIOClient("http://localhost:4001");
+    var io = SocketIOClient(url, { transports: ['websocket'] });
     return io;
 }

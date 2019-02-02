@@ -1,64 +1,79 @@
 import React, { Component } from 'react'
 import {socket} from '../../utils/socket'
 import { CardDevice } from './card.device';
-import { LoadingProgress } from './loading';
+import { LoadingProgress } from './loading'
+
+
 export default class ModalButton extends Component {
-  state = {
-    device: [
-      {
-        name: "Samsung", 
-        imageUrl: "http://pluspng.com/img-png/android-call-galaxy-korea-mobile-phone-samsung-icon-icon-512.png",
-        status: false
-      },
-      {
-        name: "Oppo",
-        imageUrl: "https://www.gizbot.com/img/400x80/img/gadget-finder/original/2016/10/oppo-r9s-price-in-india_14766841260.png",
-        status: false
-      },
-      {
-        name: "Vivo",
-        imageUrl: "http://mohitelectrovision.com/wp-content/uploads/2018/09/mobile.png",
-        status: false
-      },
-      {
-        name: "Xiaomi",
-        imageUrl: "http://www.stickpng.com/assets/images/58adef56e612507e27bd3c26.png",
-        status: true
-      },
-      {
-        name: "Huawei",
-        imageUrl: "https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/list-image/phones/p10/p10-listimage-black.png",
-        status: false
-      }
-    ],
-    loading: false
-  }
+  constructor(props) {
+    super(props)
+  
+    this.state = { 
+      loading: false,
+      uniqueId: '',
+      status: false,
+      lock: false,
+      devices: []
+    };
+    this.socket = props.socket;
+  };
+  
 
   componentDidMount() {
-    socket().emit('data', "tester rong");
+    this.socket.on('conn-device-'+localStorage.getItem('userId'), (data) => {
+      const {uniqueId, status} = data
+      console.log(data)
+      this.setState({uniqueId,status})
+    });
+    this.socket.on('conn-device-' + localStorage.getItem('userId') + '-now-status', data => {
+      this.setState({
+        lock: data.lock,
+        loading: !data.lock
+      })
+    });
+    this.props.onGetDevices()
   }
 
-  tracker(toggle) {
+  lockDev(toggle) {
+    this.socket.emit('track-device', {
+      userId: localStorage.getItem("userId")
+    })
+    this.socket.emit("testerong", { userId: localStorage.getItem("userId")})
+    this.setState({lock: true})
+  }
+
+  unlock(toggle) {
+    this.socket.emit('untrack-device', {userId: localStorage.getItem('userId')})
+    this.setState({ lock: false })
+  }
+
+  componentWillReceiveProps(props) {
     this.setState({
-      loading: toggle
+      devices: props.devices
     })
   }
 
   render() {
-    const MDevice = this.state.device.map((v,i) => {
-      return (
-        <div key={i} className="col-md">
-          {
-            <CardDevice 
-              name={v.name} 
-              imageUrl={v.imageUrl} 
-              status={v.status}
-              trackDevice={this.tracker.bind(this)}
-            />
-          }
-        </div>
-      )
-    })
+
+    const renderDevices = () => {
+      return this.props.devices.map((v, i) => {
+        return (
+          <div key={i} className="col-md">
+            {
+              <CardDevice
+                key={v.uniqueId}
+                name={v.uniqueId}
+                imageUrl={"https://cdn1.iconfinder.com/data/icons/screen-1/640/iphone6s-black-fixed-512.png"}
+                status={v.uniqueId === this.state.uniqueId ? this.state.status : false}
+                lockStatus={this.state.lock}
+                lockDevice={this.lockDev.bind(this)}
+                unlockDevice={this.unlock.bind(this)}
+              />
+            }
+          </div>
+        )
+      })
+    }
 
     return (
       <React.Fragment>
@@ -70,14 +85,13 @@ export default class ModalButton extends Component {
                 {
                   this.state.selectDevice !== '' || this.state.selectDevice !== null ? 
                   <div className="row">
-                    {MDevice}
+                    {renderDevices()}
                   </div>
                   :
                   null
                 }
           </div>
         </div>
-        <LoadingProgress loading={this.state.loading}/>
       </React.Fragment>
     )
   }

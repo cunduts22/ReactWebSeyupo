@@ -8,7 +8,7 @@ export const checkAuthenticated = (Component) => {
             // console.log(this.props)
             if(this.props.auth) {
                 return (
-                    <NavBar>
+                    <NavBar {...this.props}>
                         <Component {...this.props}/>
                     </NavBar>
                 )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CardDevice = ({name,imageUrl,status, trackDevice}) => {
+export const CardDevice = ({name,imageUrl,status, unlockDevice, lockDevice, lockStatus}) => {
     return (
         <div className="card">
             <div className="text-center">{name}</div>
@@ -23,15 +23,34 @@ export const CardDevice = ({name,imageUrl,status, trackDevice}) => {
                                 }
                             </div>
                         </div>
+                        <div className="col">
+                            {
+                                status ?
+                                lockStatus ?
+                                <div className="text-danger">Tracking</div>
+                                :
+                                <div className="text-success">Untracked</div>
+                                :
+                                <div className="text-danger">NO STATUS</div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-            <button className="btn btn-danger" onClick={() => {
-                trackDevice(true)
-                setTimeout(() => {
-                    trackDevice(false)
-                }, 5000)
-            }}>Track This Device</button>
+            {
+                lockStatus ?
+                <button 
+                    className="btn btn-danger" 
+                    
+                    onClick={e => unlockDevice(false)}
+                >Untrack Device</button>
+                :
+                <button 
+                    className="btn btn-danger" 
+                    
+                    onClick={e => lockDevice(false)}
+                >Track Device</button>
+            }
         </div>
     )
 }

@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
-import mapboxgl from 'mapbox-gl'
+import mapboxgl, {} from 'mapbox-gl'
 import {inout} from '../../utils/location'
 import FloatButton from './float'
 import ModalButton from './modal';
+import { socket } from '../../utils/socket';
 class Maps extends Component {
-    state = {
-        lat: 0,
-        lng: 0,
-        mToggle: false
-    }
+    constructor(props) {
+      super(props)
     
+      this.state = {
+          lat: 0,
+          lng: 0,
+          mToggle: false
+      }
+      this.socket = socket()
+    }
     componentDidMount() {
         mapboxgl.accessToken = 'pk.eyJ1IjoieXVzcmlsc2FiaXIiLCJhIjoiY2pvNno0ZWMyMG1lOTNrbzE2Nm51Znd0aiJ9.MZ50LBrfGOEHlBCwuXqLIA'
         
         this.maps = new mapboxgl.Map({
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/dark-v9',
+            
             attributionControl: false,
             center: {
                 lat: -6.914744,
@@ -29,20 +35,33 @@ class Maps extends Component {
         var markers = new mapboxgl.Marker()
         inout({
             enableHighAccuracy: true,
-            timeout: 5000,
-            maximunAge: 0
+            timeout: 20000,
+            maximunAge: 10000
         })
         .then(res => {
             this.maps.setCenter({
                 lat: res.coords.latitude,
                 lng: res.coords.longitude
-            }).zoomTo(16)
+            }).zoomTo(13)
             markers.setLngLat({
                 lat: res.coords.latitude,
                 lng: res.coords.longitude
             }).addTo(this.maps)
         }).catch(err => {
             console.log(err)
+        });
+
+        var mark = new mapboxgl.Marker()
+        this.socket.on("track-device-result-"+localStorage.getItem("userId"), data => {
+            console.log(data)
+            this.maps.setCenter({
+                lat: data.latitude,
+                lng: data.longitude
+            })
+            mark.setLngLat({
+                lat: parseFloat(data.latitude),
+                lng: parseFloat(data.longitude)
+            }).addTo(this.maps)
         })
     }
 
@@ -50,7 +69,6 @@ class Maps extends Component {
         this.setState({
             mToggle: toggles
         })
-        console.log(this.state.mToggle)
     }
 
     render() {
@@ -66,13 +84,10 @@ class Maps extends Component {
         
         return (
             <React.Fragment>
-                {/* <div className="zoomButton" style={{position: 'relative', zIndex: '9999'}}>
-                    <button className="btn btn-danger" onClick={e => {let a = this.maps.getZoom(); this.maps.setZoom(a+1)}} style={{position: 'fixed', right: '60px', top: '60px'}}>+</button>
-                    <button className="btn btn-danger" onClick={e => {let a = this.maps.getZoom(); this.maps.setZoom(a-1)}} style={{position: 'fixed', right: '20px', top: '60px'}}>-</button>
-                </div> */}
+                
                 <div style={style} ref={el => this.mapContainer = el} />
                 <FloatButton onToggle={this.toggle.bind(this)}/>
-                <ModalButton toggleModal={this.state.mToggle}/>
+                <ModalButton socket={this.socket} toggleModal={this.state.mToggle} {...this.props}/>
             </React.Fragment>
         )
     }

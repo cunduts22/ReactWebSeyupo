@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 
 import MainRoutes from './routes';
-import { check_auth, sign_in } from './redux/actions';
+import { check_auth, sign_in, getAllDevices } from './redux/actions';
 
 class App extends Component {
     constructor(props) {
@@ -12,10 +12,6 @@ class App extends Component {
 
     componentWillMount() {
       this.props.onCheckAuth()
-    }
-
-    componentWillReceiveProps(props) {
-      console.log(props);
     }
 
   render() {
@@ -38,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onUserLogin: (payload) => {
       return dispatch(sign_in(payload))
+    },
+    onGetDevices: () => {
+      return dispatch(getAllDevices())
     }
   }
 }

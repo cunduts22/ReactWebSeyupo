@@ -1,8 +1,9 @@
-import { AUTH_SUCCESS, CHECK_AUTH, USER_SESSION } from "../types";
+import { AUTH_SUCCESS, CHECK_AUTH, USER_SESSION, RESULT_GET_DEVICES } from "../types";
 
 const initailState = {
     auth: false,
-    status: 401
+    status: 401,
+    devices: []
 }
 
 const userReducers = (state = initailState, action) => {
@@ -21,6 +22,11 @@ const userReducers = (state = initailState, action) => {
             return {
                 ...state,
                 user: {...action.payload}
+            }
+        case RESULT_GET_DEVICES:
+            return {
+                ...state,
+                devices: action.devices
             }
         default :
             return state
